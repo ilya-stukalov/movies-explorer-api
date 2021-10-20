@@ -8,7 +8,7 @@ const rateLimit = require('express-rate-limit');
 
 const mongoose = require('mongoose');
 
-const { PORT = 3001 } = process.env;
+const { PORT = 3002 } = process.env;
 
 const {
   celebrate,
