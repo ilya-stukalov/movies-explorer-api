@@ -6,9 +6,22 @@ require('dotenv').config();
 
 const rateLimit = require('express-rate-limit');
 
+const { DB_URL, NODE_ENV } = process.env;
+
 const mongoose = require('mongoose');
 
 const { PORT = 3002 } = process.env;
+
+const cors = require('cors');
+
+const {
+  allowedCors,
+} = require('./utils/constants');
+
+app.use(cors({
+  origin: allowedCors,
+  credentials: true,
+}));
 
 const {
   celebrate,
@@ -45,7 +58,7 @@ const {
   login,
 } = require('./controllers/users');
 
-mongoose.connect('mongodb://localhost:27017/bitfilmsdb');
+mongoose.connect(NODE_ENV === 'production' ? DB_URL : 'mongodb://localhost:27017/bitfilmsdb');
 
 app.post('/signin',
   celebrate({

@@ -2,8 +2,6 @@ const bcrypt = require('bcrypt');
 
 const Movie = require('../models/movie');
 
-const { JWT_SECRET, NODE_ENV } = process.env;
-
 const InvalidData = require('../errors/invalid-data');
 
 const NotFoundError = require('../errors/not-found-error');
