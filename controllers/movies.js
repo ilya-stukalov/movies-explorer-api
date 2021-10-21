@@ -1,5 +1,3 @@
-const bcrypt = require('bcrypt');
-
 const Movie = require('../models/movie');
 
 const InvalidData = require('../errors/invalid-data');

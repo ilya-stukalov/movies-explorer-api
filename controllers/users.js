@@ -1,10 +1,10 @@
 const bcrypt = require('bcrypt');
 
+const jwt = require('jsonwebtoken');
+
 const User = require('../models/user');
 
 const { JWT_SECRET, NODE_ENV } = process.env;
-
-const jwt = require('jsonwebtoken');
 
 const NotFoundError = require('../errors/not-found-error');
 
@@ -18,11 +18,11 @@ const {
   STATUS_OK,
 } = require('../utils/constants');
 
-module.exports.getUsers = (req, res, next) => {
+module.exports.getUsers = (req, res) => {
   User.find({})
     .then((users) => res
       .status(STATUS_OK)
-      .send({ data: users }))
+      .send({ data: users }));
 };
 
 module.exports.getInfoAboutMe = (req, res, next) => {
@@ -96,7 +96,13 @@ module.exports.updateUserInfo = (req, res, next) => {
       return res.status(STATUS_OK)
         .send({ data: user });
     })
-    .catch((err) => next(err));
+    .catch((err) => {
+      if (err.name === 'MongoServerError' && err.code === 11000) {
+        next(new UserExistError('Пользователь с таким email существует'));
+      } else {
+        next(err);
+      }
+    });
 };
 
 module.exports.login = (req, res, next) => {

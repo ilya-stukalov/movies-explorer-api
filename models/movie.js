@@ -53,7 +53,7 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   movieId: {
-    type: String,
+    type: Number,
     required: true,
   },
   nameRU: {
@@ -64,6 +64,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-})
+});
 
 module.exports = mongoose.model('movie', userSchema);
