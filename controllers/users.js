@@ -117,6 +117,8 @@ module.exports.login = (req, res, next) => {
         .cookie('jwt', token, {
           maxAge: 3600000,
           httpOnly: true,
+          sameSite: 'strict',
+          secure: true,
         })
         .status(STATUS_OK)
         .send({ message: 'Авторизация успешна!' });

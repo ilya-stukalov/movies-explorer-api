@@ -43,9 +43,6 @@ const {
 app.use(cors({
   origin: allowedCors,
   credentials: true,
-  sameSite: 'strict',
-  secure: true,
-  httpOnly: true
 }));
 
 const { PORT = 3000 } = process.env;
