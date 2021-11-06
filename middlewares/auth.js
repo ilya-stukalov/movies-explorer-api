@@ -15,7 +15,6 @@ module.exports = (req, res, next) => {
   } catch (err) {
     throw new NotAuthError('Неверный токен');
   }
-
   req.user = payload;
 
   next();

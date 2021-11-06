@@ -4,7 +4,7 @@ module.exports.STATUS_OK = 200;
 
 module.exports.allowedCors = [
   'https://api.movies-explorer-ist.nomoredomains.monster',
-  'https://movies-explorer-ist.nomoredomains.monster',
+  'https://movies-explorer-ist.nomoredomains.xyz',
   'http://localhost:3001',
 ];
 
