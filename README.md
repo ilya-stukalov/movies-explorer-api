@@ -3,5 +3,5 @@
 
 
 Адреса:
-api: https://api.movies-explorer-ist.nomoredomains.monster
+api: https://api.movies-explorer-ist.nomoredomains.xyz
 ip: 62.84.118.90
