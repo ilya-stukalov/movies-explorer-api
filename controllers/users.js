@@ -61,14 +61,13 @@ module.exports.createUser = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'MongoServerError' && err.code === 11000) {
-        next(new UserExistError('Пользователь с таким email существует'));
+        throw new UserExistError('Пользователь с таким email существует');
       }
       if (err.name === 'ValidationError') {
-        next(new InvalidData(err.message));
-      } else {
-        next(err);
+        throw new InvalidData(err.message);
       }
-    })
+      })
+    .catch(next);
 };
 
 module.exports.updateUserInfo = (req, res, next) => {
