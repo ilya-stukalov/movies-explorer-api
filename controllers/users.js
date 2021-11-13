@@ -40,16 +40,12 @@ module.exports.getInfoAboutMe = (req, res, next) => {
 module.exports.createUser = (req, res, next) => {
   const {
     name,
-    about,
-    avatar,
     email,
     password,
   } = req.body;
   bcrypt.hash(password, 10)
     .then((hash) => User.create({
       name,
-      about,
-      avatar,
       email,
       password: hash,
     }))
@@ -59,8 +55,6 @@ module.exports.createUser = (req, res, next) => {
         .send({
           data: {
             name,
-            about,
-            avatar,
             email,
           },
         });
@@ -74,7 +68,7 @@ module.exports.createUser = (req, res, next) => {
       } else {
         next(err);
       }
-    });
+    })
 };
 
 module.exports.updateUserInfo = (req, res, next) => {
